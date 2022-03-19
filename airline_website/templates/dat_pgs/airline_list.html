@@ -1,0 +1,9 @@
+{% block content %}
+<h2>Airlines</h2>
+<ul>
+    {% for airline in object_list %}
+    <li>{{ airline.airline_name }}</li>
+    <li>{{ airline.type_of_airline }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

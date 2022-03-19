@@ -1,0 +1,9 @@
+{% block content %}
+<h2>Employees</h2>
+<ul>
+    {% for employee in object_list %}
+    <li>{{ employee.emp_id }}</li>
+    <li>{{ employee.airline_name }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
