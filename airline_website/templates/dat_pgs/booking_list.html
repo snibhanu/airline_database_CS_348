@@ -1,0 +1,13 @@
+{% block content %}
+<h2>Booking</h2>
+<ul>
+    {% for booking in object_list %}
+    <li>{{booking.confirmation_no }}</li>
+    <li>{{booking.pass_id }}</li>
+    <li>{{booking.dep_arpt }}</li>
+    <li>{{booking.arr_arpt }}</li>
+    <li>{{booking.dep_date }}</li>
+    <li>{{booking.arr_date }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

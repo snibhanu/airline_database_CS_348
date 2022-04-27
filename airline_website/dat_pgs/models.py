@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 from django.urls import reverse
-from sqlalchemy import UniqueConstraint
+
 
 # Create your models here.
 class PassList(models.Model):
@@ -58,7 +58,7 @@ class Employees(models.Model):
 class Booking(models.Model):
     confirmation_no = models.CharField(max_length=100, blank=False, unique=True, default=uuid.uuid4)
     pass_id = models.ForeignKey(PassList, on_delete=models.CASCADE)
-    flight_no = models.ForeignKey(FlightList, on_delete=models.CASCADE)
+    pass_id  = models.ForeignKey(FlightList, on_delete=models.CASCADE)
     dep_arpt = models.CharField(max_length=200)
     arr_arpt = models.DateTimeField()
     dep_date = models.DateTimeField()

@@ -1,0 +1,11 @@
+{% block content %}
+<h2>Preferences</h2>
+<ul>
+    {% for preferences in object_list %}
+    <li>{{preferences.pass_id }}</li>
+    <li>{{preferences.seat_no }}</li>
+    <li>{{preferences.seat_type }}</li>
+    <li>{{preferences.meal_type }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

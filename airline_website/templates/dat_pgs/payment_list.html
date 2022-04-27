@@ -1,0 +1,12 @@
+{% block content %}
+<h2>Payment</h2>
+<ul>
+    {% for payment in object_list %}
+    <li>{{payment.pass_id }}</li>
+    <li>{{payment.credit_card_name }}</li>
+    <li>{{payment.card_no }}</li>
+    <li>{{payment.sec_code }}</li>
+    <li>{{payment.exp_date }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

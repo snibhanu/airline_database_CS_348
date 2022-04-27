@@ -1,0 +1,12 @@
+{% block content %}
+<h2>PassList</h2>
+<ul>
+    {% for passlist in object_list %}
+    <li>{{passlist.pass_id }}</li>
+    <li>{{passlist.name }}</li>
+    <li>{{passlist.address }}</li>
+    <li>{{passlist.ph_nbr }}</li>
+    <li>{{passlist.email }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

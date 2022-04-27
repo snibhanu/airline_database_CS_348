@@ -1,0 +1,15 @@
+{% block content %}
+<h2>FlightList</h2>
+<ul>
+    {% for flightlist in object_list %}
+    <li>{{ flightlist.flight_id }}</li>
+    <li>{{ flightlist.flight_no }}</li>
+    <li>{{ flightlist.airline_name }}</li>
+    <li>{{ flightlist.seats_left }}</li>
+    <li>{{ flightlist.dep_arpt }}</li>
+    <li>{{ flightlist.arr_arpt }}</li>
+    <li>{{ flightlist.dep_date }}</li>
+    <li>{{ flightlist.arr_date }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
