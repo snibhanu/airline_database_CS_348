@@ -1,20 +1,23 @@
 #from attr import field
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
-
 from .models import Booking, FlightList, PassList, Payment, Preferences
 from .models import Employees
 from .models import Airline
 
 
-def homePageView(request):
-    return HttpResponse("Hello, World!")
-def index(response, id):
-    ls = PassList.objects.get(id=id)
-    return HttpResponse("<h1>%s</h1><br></br><p>%s</p>" %(ls.name,ls.address))
+
+
 # Create your views here.
+class PassListView(ListView):
+    model = PassList
+
+class PassCreateView(CreateView):
+    model = PassList
+    fields = ['pass_id', 'name','address', 'ph_nbr', 'email']
 
 
 class EmployeesListView(ListView):
@@ -29,7 +32,7 @@ class BookingListView(ListView):
 
 class BookingCreateView(CreateView):
     model =  Booking
-    fields = ['confirmation_no', 'pass_id', 'flight_no', 'dep_arpt', 'arr_arpt', ' dep_date ', 'arr_date']
+    fields = ['confirmation_no', 'pass_id', 'flight_no', 'dep_arpt', 'arr_arpt', 'dep_date', 'arr_date']
 
 class PaymentListView(ListView):
     model = Payment

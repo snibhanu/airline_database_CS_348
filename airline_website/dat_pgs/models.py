@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.urls import reverse
+from django.shortcuts import redirect
 
 
 # Create your models here.
@@ -17,6 +18,9 @@ class PassList(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_value(self):
+        return reverse("passengers")
+
 
 class Airline(models.Model):
     airline_name = models.CharField(max_length=100, blank=False, unique=True, default=uuid.uuid4)
@@ -27,6 +31,9 @@ class Airline(models.Model):
 
     def __str__(self):
         return self.airline_name
+
+    def get_absolute_url(self):
+        return reverse("airlines")
 
 class FlightList(models.Model):
     flight_id = models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4)
@@ -43,22 +50,27 @@ class FlightList(models.Model):
 
     def __str__(self):
         return self.flight_id
+    
+    def get_absolute_url(self):
+        return reverse("flights")
 
 class Employees(models.Model):
     emp_id = models.CharField(max_length=100, blank=False, unique=True, default=uuid.uuid4)
     airline_name = models.ForeignKey(Airline, on_delete=models.CASCADE)
-    flight_no = models.ForeignKey(FlightList, on_delete=models.CASCADE)
+    flight_id = models.ForeignKey(FlightList, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["-emp_id"]
 
     def __str__(self):
         return "%s %s" % (self.emp_id, self.airline_name)
+    def get_absolute_url(self):
+        return reverse("employees")
 
 class Booking(models.Model):
     confirmation_no = models.CharField(max_length=100, blank=False, unique=True, default=uuid.uuid4)
     pass_id = models.ForeignKey(PassList, on_delete=models.CASCADE)
-    pass_id  = models.ForeignKey(FlightList, on_delete=models.CASCADE)
+    flight_no  = models.ForeignKey(FlightList, on_delete=models.CASCADE)
     dep_arpt = models.CharField(max_length=200)
     arr_arpt = models.DateTimeField()
     dep_date = models.DateTimeField()
@@ -69,6 +81,9 @@ class Booking(models.Model):
     
     def __str__(self):
         return self.confirmation_no
+    
+    def get_absolute_url(self):
+        return reverse("booking")
 
 class Payment(models.Model):
     pass_id = models.ForeignKey(PassList, on_delete=models.CASCADE)
@@ -84,6 +99,9 @@ class Payment(models.Model):
             )
         ]
 
+    def get_absolute_url(self):
+        return reverse("payment")
+
 class Preferences(models.Model):
     pass_id = models.ForeignKey(PassList, on_delete=models.CASCADE)
     seat_no = models.IntegerField(default=0)
@@ -96,7 +114,8 @@ class Preferences(models.Model):
                 name="pref_id"
             )
         ]
-    
+    def get_absolute_url(self):
+        return reverse("preferences")
     
 
 
