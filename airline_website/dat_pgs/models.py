@@ -18,7 +18,7 @@ class PassList(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_value(self):
+    def get_absolute_url(self):
         return reverse("passengers")
 
 
@@ -41,7 +41,7 @@ class FlightList(models.Model):
     airline_name = models.ForeignKey(Airline, on_delete=models.CASCADE)
     seats_left = models.IntegerField(default=0)
     dep_arpt = models.CharField(max_length=200)
-    arr_arpt = models.DateTimeField()
+    arr_arpt = models.CharField(max_length=200)
     dep_date = models.DateTimeField()
     arr_date = models.DateTimeField()
 
@@ -72,7 +72,7 @@ class Booking(models.Model):
     pass_id = models.ForeignKey(PassList, on_delete=models.CASCADE)
     flight_no  = models.ForeignKey(FlightList, on_delete=models.CASCADE)
     dep_arpt = models.CharField(max_length=200)
-    arr_arpt = models.DateTimeField()
+    arr_arpt = models.CharField(max_length=200)
     dep_date = models.DateTimeField()
     arr_date = models.DateTimeField()
 

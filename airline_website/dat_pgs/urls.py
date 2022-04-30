@@ -2,7 +2,7 @@ from turtle import home
 from django.urls import path
 from . import views
 
-from .views import BookingCreateView, BookingListView, EmployeesListView, EmployeesCreateView, AirlineListView, AirlineCreateView, FlightCreateView, FlightListView, PassCreateView, PassListView, PaymentCreateView, PaymentListView, PreferencesCreateView, PreferencesListView
+from .views import BookingCreateView, BookingListView, EmployeesListView, EmployeesCreateView, AirlineListView, AirlineCreateView, FlightCreateView, FlightListView, PassCreateView, PassListView, PaymentCreateView, PaymentListView, PreferencesCreateView, PreferencesListView, detail_view_payment
 #path("", homePageView, name="home")
 urlpatterns = [
         path("passengers/", PassListView.as_view(), name= 'passengers'),
@@ -13,6 +13,7 @@ urlpatterns = [
         path("add_airline/", AirlineCreateView.as_view(), name='add_airline'),
         path("payment/", PaymentListView.as_view(), name='payment'),
         path("add_payment/", PaymentCreateView.as_view(), name= 'add_payment'),
+        path('<pass_id>', detail_view_payment, name='add_indiv_payment'),
         path("booking/", BookingListView.as_view(), name='booking'),
         path("add_booking/", BookingCreateView.as_view(), name = 'add_booking'),
         path("preferences/", PreferencesListView.as_view(), name= 'preferences'),
