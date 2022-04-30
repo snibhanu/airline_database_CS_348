@@ -19,7 +19,7 @@ class PassList(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("passengers")
+        return reverse("home_page_view")
 
 
 class Airline(models.Model):
@@ -83,7 +83,7 @@ class Booking(models.Model):
         return self.confirmation_no
     
     def get_absolute_url(self):
-        return reverse("booking")
+        return reverse("home_page_view")
 
 class Payment(models.Model):
     pass_id = models.ForeignKey(PassList, on_delete=models.CASCADE)
@@ -100,7 +100,7 @@ class Payment(models.Model):
         ]
 
     def get_absolute_url(self):
-        return reverse("payment")
+        return reverse("home_page_view")
 
 class Preferences(models.Model):
     pass_id = models.ForeignKey(PassList, on_delete=models.CASCADE)
@@ -115,7 +115,7 @@ class Preferences(models.Model):
             )
         ]
     def get_absolute_url(self):
-        return reverse("preferences")
+        return reverse("home_page_view")
     
 
 
