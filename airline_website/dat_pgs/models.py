@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 
 # Create your models here.
 class PassList(models.Model):
-    pass_id = models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4)
+    pass_id = models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4, db_index=True)
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     ph_nbr = models.CharField(max_length=200)
@@ -36,7 +36,7 @@ class Airline(models.Model):
         return reverse("airlines")
 
 class FlightList(models.Model):
-    flight_id = models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4)
+    flight_id = models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4, db_index=True)
     flight_no = models.CharField(max_length=200)
     airline_name = models.ForeignKey(Airline, on_delete=models.CASCADE)
     seats_left = models.IntegerField(default=0)
@@ -86,7 +86,7 @@ class Booking(models.Model):
         return reverse("home_page_view")
 
 class Payment(models.Model):
-    pass_id = models.ForeignKey(PassList, on_delete=models.CASCADE)
+    pass_id = models.ForeignKey(PassList, on_delete=models.CASCADE, db_index=True)
     credit_card_name = models.CharField(max_length=200)
     card_no = models.CharField(max_length=200)
     sec_code = models.CharField(max_length=3)
