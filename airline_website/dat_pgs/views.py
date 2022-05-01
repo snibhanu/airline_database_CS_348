@@ -38,6 +38,31 @@ class BookingListView(ListView):
 class BookingCreateView(CreateView):
     model =  Booking
     fields = ['confirmation_no', 'pass_id', 'flight_no', 'dep_arpt', 'arr_arpt', 'dep_date', 'arr_date']
+    def get_form(self):
+        form = super(BookingCreateView, self).get_form()
+
+        print(self.request.POST.get("flight_no"))
+
+        if self.request.POST.get("flight_no") != None:
+
+
+            flight_no = self.request.POST.get("flight_no")
+            # print(type(form['flight_no']))
+            # print(flight_no)
+            for i in form['flight_no']:
+                print(i.data['value'])
+                if str(i.data['value']) == flight_no:
+                # print('hi')
+                    flight_no = str(i.data['label'])
+            command = "UPDATE dat_pgs_flightlist SET seats_left = seats_left - 1 WHERE flight_id = "
+            command += str(flight_no)
+            command += ";"
+            print(command)
+            with connection.cursor() as cursor:
+                cursor.execute(command)
+                connection.commit()
+
+        return form
 
 class PaymentListView(ListView):
     model = Payment
