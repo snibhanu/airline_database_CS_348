@@ -76,6 +76,7 @@ def group_by_airline(company):
     print(f'Company{company}')
     http_itm = []
     with connection.cursor() as cursor:
+        cursor.execute("PRAGMA read_uncommitted = true;")
         cursor.execute('''SELECT * FROM dat_pgs_airline a, dat_pgs_flightlist b 
         WHERE b.airline_name_id =  a.id;''')
         row = cursor.fetchall()
@@ -95,6 +96,7 @@ def group_by_destination(destination):
     print(f'Company{destination}')
     http_itm = []
     with connection.cursor() as cursor:
+        cursor.execute("PRAGMA read_uncommitted = true;")
         cursor.execute('''SELECT * FROM dat_pgs_airline a, dat_pgs_flightlist b 
         WHERE b.airline_name_id =  a.id;''')
         row = cursor.fetchall()
@@ -114,6 +116,7 @@ def group_by_departure(departure):
     print(f'Company{departure}')
     http_itm = []
     with connection.cursor() as cursor:
+        cursor.execute("PRAGMA read_uncommitted = true;")
         cursor.execute('''SELECT * FROM dat_pgs_airline a, dat_pgs_flightlist b 
         WHERE b.airline_name_id =  a.id;''')
         row = cursor.fetchall()
