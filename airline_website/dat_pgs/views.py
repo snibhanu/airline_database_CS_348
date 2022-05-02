@@ -173,7 +173,7 @@ def detail_view_payment(self,pass_id):
     http_itm_1 = []
     with connection.cursor() as cursor:
         cursor.execute('''SELECT name,pass_id, credit_card_name, card_no, sec_code 
-        FROM (SELECT * FROM dat_pgs_payment a, dat_pgs_passlist b WHERE b.id = a.id);''')
+        FROM (SELECT * FROM dat_pgs_payment a, dat_pgs_passlist b WHERE b.id = a.pass_id_id);''')
         row = cursor.fetchall()
         for itm in row:
             if itm[1] == pass_id:
